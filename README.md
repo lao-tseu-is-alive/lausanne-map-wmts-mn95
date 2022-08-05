@@ -8,3 +8,8 @@ so you just need to clone this repo and run once as usual npm install.
 then when you code you just need to run :
 
     npm run dev
+
+
+
+#### also available in this codepen:
+https://codepen.io/lao-tseu-is-alive/pen/LYdmGbV
