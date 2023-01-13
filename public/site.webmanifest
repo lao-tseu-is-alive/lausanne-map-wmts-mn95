@@ -1,0 +1,20 @@
+{
+    "name": "Lausanne Map WMTS MN95",
+    "short_name": "Lausanne Map",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#603cba",
+    "background_color": "#603cba",
+    "start_url": "https://tilesmn95.lausanne.ch/",
+    "display": "standalone"
+}

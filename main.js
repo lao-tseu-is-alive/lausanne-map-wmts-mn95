@@ -3,11 +3,11 @@ import 'ol/ol.css'
 import OlMap from 'ol/Map';
 import OlView from 'ol/View';
 import OlLayerTile from 'ol/layer/Tile';
-import OlSourceWMTS, { optionsFromCapabilities } from 'ol/source/WMTS';
+import OlSourceWMTS, {optionsFromCapabilities} from 'ol/source/WMTS';
 import OlFormatWMTSCapabilities from 'ol/format/WMTSCapabilities';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
-import { register }	from 'ol/proj/proj4';
+import {register} from 'ol/proj/proj4';
 
 
 const lausanneGareinMN95 = [2537968.5, 1152088.0];
@@ -34,7 +34,7 @@ const setBaseLayer = (olMap, baseLayerName) => {
 		olMap.getLayers()
 		     .forEach((layer) => {
 				     const type = layer.get('type');
-						 const source = layer.getSource();
+				     const source = layer.getSource();
 				     console.log(`### layername : ${source.layer_}`)
 				     console.log(`### type : ${layer.get('type')}`)
 				     if (type === 'base') {
@@ -59,7 +59,7 @@ const setBaseLayer = (olMap, baseLayerName) => {
 };
 
 
-function getWmtsSource(WMTSCapabilitiesParsed, layerName) {
+function getWmtsSource (WMTSCapabilitiesParsed, layerName) {
 		const localDebug = false;
 		if (localDebug) log.t(`layerName: ${layerName}`);
 		const WMTSOptions = optionsFromCapabilities(WMTSCapabilitiesParsed, {
@@ -72,7 +72,7 @@ function getWmtsSource(WMTSCapabilitiesParsed, layerName) {
 		return new OlSourceWMTS(WMTSOptions);
 }
 
-function createBaseOlLayerTile(parsedWmtsCapabilities, title, layerName, visible = false) {
+function createBaseOlLayerTile (parsedWmtsCapabilities, title, layerName, visible = false) {
 		return new OlLayerTile({
 				title,
 				type: 'base',
@@ -81,7 +81,7 @@ function createBaseOlLayerTile(parsedWmtsCapabilities, title, layerName, visible
 		});
 }
 
-async function getWMTSCapabilitiesFromUrl(url) {
+async function getWMTSCapabilitiesFromUrl (url) {
 		const response = await fetch(url);
 		if (!response.ok) {
 				const message = `###!### ERROR in getWMTSCapabilitiesFromUrl when doing fetch(${url}: http status: ${response.status}`;
@@ -91,7 +91,7 @@ async function getWMTSCapabilitiesFromUrl(url) {
 		return WMTSCapabilities;
 }
 
-async function getWmtsBaseLayers(url) {
+async function getWmtsBaseLayers (url) {
 		const arrWmtsLayers = [];
 		try {
 				const WMTSCapabilities = await getWMTSCapabilitiesFromUrl(url);
@@ -124,17 +124,15 @@ async function getWmtsBaseLayers(url) {
 }
 
 
-const arrBaseLayers = await getWmtsBaseLayers(urlLausanneMN95);
-if ((arrBaseLayers === null) || (arrBaseLayers.length < 1)) {
-		console.warn('arrBaseLayers cannot be null or empty to be able to see a nice map !');
-}
-
-async function createLausanneMap(
+async function createLausanneMap (
 divOfMap = 'map',
 centerOfMap = lausanneGareinMN95,
 zoomLevel = 5,
 baseLayer = defaultBaseLayer) {
-		
+		const arrBaseLayers = await getWmtsBaseLayers(urlLausanneMN95);
+		if ((arrBaseLayers === null) || (arrBaseLayers.length < 1)) {
+				console.warn('arrBaseLayers cannot be null or empty to be able to see a nice map !');
+		}
 		const map = new OlMap({
 				target: divOfMap,
 				layers: arrBaseLayers,
@@ -146,5 +144,8 @@ baseLayer = defaultBaseLayer) {
 		});
 		setBaseLayer(map, baseLayer);
 }
-const placeStFrancoisM95 = [2538202, 1152364];
-await createLausanneMap('map', placeStFrancoisM95,8,'orthophotos_ortho_lidar_2016');
+
+(async () => {
+		const placeStFrancoisM95 = [2538202, 1152364];
+		await createLausanneMap('map', placeStFrancoisM95, 8, 'fonds_geo_osm_bdcad_couleur');
+})();

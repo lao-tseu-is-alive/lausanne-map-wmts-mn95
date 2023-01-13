@@ -183,6 +183,11 @@ sub {
 
 img {
   border: 0;
+  overflow: clip!important;
+}
+
+canvas {
+  overflow: clip!important;
 }
 
 /**
@@ -264,7 +269,7 @@ textarea {
  */
 
 button {
-  overflow: visible;
+  overflow: clip;
 }
 
 /**
@@ -585,9 +590,10 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #1EAEDB; }
+  color: #0f5971; }
 a:hover {
-  color: #0FA0CE; }
+  color: #065067;
+background-color: #ffff0a}
 
 
 /* Buttons
@@ -848,4 +854,22 @@ there.
 .map {
   height: 760px;
   width: 100%;
+}
+
+.ol-zoom {
+  font-size: 1.5em;
+  padding: 2px;
+  right: 0.5em !important;
+  left: auto !important;
+}
+
+.ol-zoom-in {
+  width: 48px !important;
+  height: 48px !important;
+  margin-bottom: 8px !important;
+}
+.ol-zoom-out {
+  width: 48px !important;
+  height: 48px !important;
+  margin-bottom: 8px !important;
 }
