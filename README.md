@@ -3,6 +3,9 @@ A simple [OpenLayers](https://openlayers.org/) interactive map using the
 [Service du Cadastre de Lausanne](https://www.lausanne.ch/officiel/administration/logement-environnement-et-architecture/service-cadastre.html)
 WMTS tiles in  Swiss MN95  Projection (EPSG:2056).
 
+##### if you are looking for a Leaflet example to do the same you can instead have look to
+this repo : https://github.com/lao-tseu-is-alive/lausanne-map-wmts-mn95-leaflet
+
 #### just play with it on :
  + [tilesmn95.lausanne.ch](https://tilesmn95.lausanne.ch/)
  + this codepen : https://codepen.io/lao-tseu-is-alive/pen/LYdmGbV
