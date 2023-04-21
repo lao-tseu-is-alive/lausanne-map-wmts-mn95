@@ -143,9 +143,21 @@ baseLayer = defaultBaseLayer) {
 				}),
 		});
 		setBaseLayer(map, baseLayer);
+		return map;
 }
 
 (async () => {
 		const placeStFrancoisM95 = [2538202, 1152364];
-		await createLausanneMap('map', placeStFrancoisM95, 8, 'fonds_geo_osm_bdcad_couleur');
+		const myOlMap = await createLausanneMap('map', placeStFrancoisM95, 8, 'fonds_geo_osm_bdcad_couleur');
+		console.log("myOlMap contains a ref to your OpenLayers Map Object : ", myOlMap)
+		const urlSWISSTOPO = 'https://wmts.geo.admin.ch/EPSG/2056/1.0.0/WMTSCapabilities.xml?lang=fr';
+		const WMTSCapabilitiesSWISSTOPO = await getWMTSCapabilitiesFromUrl(urlSWISSTOPO);
+		const WMTSCapabilitiesParsedSWISSTOPO = parser.read(WMTSCapabilitiesSWISSTOPO);
+		const olTileLayer = createBaseOlLayerTile(WMTSCapabilitiesParsedSWISSTOPO,
+		'SwissImage 2020 10cm (SWISSTOPO)',
+		'ch.swisstopo.swissimage',
+		true,
+		)
+		myOlMap.addLayer(olTileLayer);
+		
 })();
