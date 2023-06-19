@@ -150,6 +150,7 @@ baseLayer = defaultBaseLayer) {
 		const placeStFrancoisM95 = [2538202, 1152364];
 		const myOlMap = await createLausanneMap('map', placeStFrancoisM95, 8, 'fonds_geo_osm_bdcad_couleur');
 		console.log("myOlMap contains a ref to your OpenLayers Map Object : ", myOlMap)
+		/*
 		const urlSWISSTOPO = 'https://wmts.geo.admin.ch/EPSG/2056/1.0.0/WMTSCapabilities.xml?lang=fr';
 		const WMTSCapabilitiesSWISSTOPO = await getWMTSCapabilitiesFromUrl(urlSWISSTOPO);
 		const WMTSCapabilitiesParsedSWISSTOPO = parser.read(WMTSCapabilitiesSWISSTOPO);
@@ -159,5 +160,7 @@ baseLayer = defaultBaseLayer) {
 		true,
 		)
 		myOlMap.addLayer(olTileLayer);
+		
+		 */
 		
 })();
